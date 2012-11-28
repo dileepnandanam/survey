@@ -16,33 +16,38 @@
 
 
 <% elsif current_user.priviledge=="administrator" %>
+  <h3>Ansers:</h3>
   <% if @question.answer_type == "word" %>
-    Ansers:<br />
+    <br />
     <table>
     <% @question.wordanswers.each do |answer| %>
       
       <tr>
-        <td><%= User.find_by_id(answer.user_id).name%>:</td><td><%= answer.content %></td>
+        <td><%= User.find_by_id(answer.user_id).name%>:</td>
       </tr>
-      
+      <tr>
+        <td></td><td><%= answer.content %></td>
+      </tr>
      <% end %>
      </table>
      
   <% elsif @question.answer_type == "text" %>
-    Ansers:<br />
+    
     <table>
     <% @question.textanswers.each do |answer| %>
       
       <tr>
-        <td><%= User.find_by_id(answer.user_id).name%>:</td><td><%= answer.content %></td>
+        <td><%= User.find_by_id(answer.user_id).name%>:</td>
       </tr>
-      
+      <tr>
+        <td></td><td><%= answer.content %></td>
+      </tr>
      <% end %>
      </table>
      
      
   <% else %>
-    Ansers:<br />
+    
     Yes:<%= @yesc%><br />
     No:<%= @noc%><br />
   <% end %>
