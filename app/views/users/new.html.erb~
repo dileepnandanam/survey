@@ -18,7 +18,7 @@
     <%= f.text_field :password_confirmation %>
   </div>
   <div class="actions">
-    <%= f.submit("sign up") %>
+    <%= f.submit %>
   </div>
 <% end %>
 <%= link_to 'back' , root_path %>
