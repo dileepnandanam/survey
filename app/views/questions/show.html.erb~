@@ -22,11 +22,25 @@
     <% @question.wordanswers.each do |answer| %>
       
       <tr>
-        <td><%= answer.content %><td>
+        <td><%= answer.content %><td><td>by:<%= User.find_by_id(answer.user_id).name%><td>
       </tr>
       
      <% end %>
      </table>
+     
+  <% elsif @question.answer_type == "text" %>
+    Ansers:<br />
+    <table>
+    <% @question.textanswers.each do |answer| %>
+      
+      <tr>
+        <td><%= answer.content %><td><td>by:<%= User.find_by_id(answer.user_id).name%><td>
+      </tr>
+      
+     <% end %>
+     </table>
+     
+     
   <% else %>
     Ansers:<br />
     Yes:<%= @yesc%><br />
