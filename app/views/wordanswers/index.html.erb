@@ -1,0 +1,25 @@
+<h1>Listing wordanswers</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Question</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @wordanswers.each do |wordanswer| %>
+  <tr>
+    <td><%= wordanswer.content %></td>
+    <td><%= wordanswer.question_id %></td>
+    <td><%= link_to 'Show', wordanswer %></td>
+    <td><%= link_to 'Edit', edit_wordanswer_path(wordanswer) %></td>
+    <td><%= link_to 'Destroy', wordanswer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Wordanswer', new_wordanswer_path %>

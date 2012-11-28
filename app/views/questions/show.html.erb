@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <h2>Question:
+  <%= @question.content %></h2>
+</div>
+
+
+
+
+<% if current_user==nil %>
+  <p>
+    Please sign in to answer questions
+  </p>
+
+
+
+<% elsif current_user.priviledge=="administrator" %>
+  <% if @question.answer_type == "word" || @question.answer_type == "text" %>
+    Ansers:<br />
+    <table>
+    <% @question.wordanswers.each do |answer| %>
+      
+      <tr>
+        <td><%= answer.content %><td>
+      </tr>
+      
+     <% end %>
+     </table>
+  <% else %>
+    Ansers:<br />
+    Yes:<%= @yesc%><br />
+    No:<%= @noc%><br />
+  <% end %>
+  
+    
+<% end %>
+<%= link_to 'Back', Questionare.find_by_id(cookies[:current_questionare_id]) %>
+
+
+  
+
+
+
+
+  

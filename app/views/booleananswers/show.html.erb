@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @booleananswer.content %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @booleananswer.question_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_booleananswer_path(@booleananswer) %> |
+<%= link_to 'Back', Questionare.find_by_id(cookies[:current_questionare_id]) %>

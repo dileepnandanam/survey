@@ -1,0 +1,27 @@
+<h1>Listing textanswers</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Question</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @textanswers.each do |textanswer| %>
+  <tr>
+    <td><%= textanswer.content %></td>
+    <td><%= textanswer.question_id %></td>
+    <td><%= textanswer.user_id %></td>
+    <td><%= link_to 'Show', textanswer %></td>
+    <td><%= link_to 'Edit', edit_textanswer_path(textanswer) %></td>
+    <td><%= link_to 'Destroy', textanswer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Textanswer', new_textanswer_path %>

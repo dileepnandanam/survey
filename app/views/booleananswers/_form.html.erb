@@ -1,0 +1,27 @@
+<%= form_for(@booleananswer) do |f| %>
+  <% if @booleananswer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booleananswer.errors.count, "error") %> prohibited this booleananswer from being saved:</h2>
+
+      <ul>
+      <% @booleananswer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="button">
+    
+    <%= f.radio_button :content, "yes" %>
+    <%= f.label "Yes" %>
+    <br />
+    
+    <%= f.radio_button :content, "no" %>
+    <%= f.label "No" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit("Add answer") %>
+  </div>
+<% end %>

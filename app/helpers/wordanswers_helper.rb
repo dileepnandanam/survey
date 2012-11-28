@@ -1,0 +1,2 @@
+module WordanswersHelper
+end

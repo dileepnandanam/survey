@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  
+  <div>
+  <% if current_user==nil %>
+    <%= link_to "sign in", '/signin' %> |
+    <%= link_to "sign up", '/signup' %>
+  <%elsif current_user.priviledge=="ordinary_user" %> 
+    <%= link_to "sign out", '/signout', method: :delete %> |
+    <%= link_to "account", current_user %>
+  <%elsif current_user.priviledge=="administrator" %> 
+    <%= link_to "sign out", '/signout',method: :delete %> |
+    <%= link_to "account", current_user %>
+  <% end %>
+  </div>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

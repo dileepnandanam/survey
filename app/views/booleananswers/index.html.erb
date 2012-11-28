@@ -1,0 +1,25 @@
+<h1>Listing booleananswers</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Question</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @booleananswers.each do |booleananswer| %>
+  <tr>
+    <td><%= booleananswer.content %></td>
+    <td><%= booleananswer.question_id %></td>
+    <td><%= link_to 'Show', booleananswer %></td>
+    <td><%= link_to 'Edit', edit_booleananswer_path(booleananswer) %></td>
+    <td><%= link_to 'Destroy', booleananswer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Booleananswer', new_booleananswer_path %>

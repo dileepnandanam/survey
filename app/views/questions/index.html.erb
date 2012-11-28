@@ -1,0 +1,27 @@
+<h1>Listing questions</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Answer type</th>
+    <th>Questionare</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= question.content %></td>
+    
+    
+    
+    <%= link_to 'Manage' , question %>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Question', new_question_path %>

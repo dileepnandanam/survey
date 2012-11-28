@@ -1,0 +1,72 @@
+<div><h2>Survey questionares</h2></div>
+
+
+
+<% if current_user==nil %>
+  <table>
+  <% @questionares.each do |questionare| %>
+    <tr>
+      
+      <td>About <%= questionare.questionare_name %></td>
+      <td>By:<%= User.find_by_id(questionare.user_id).name %></td>
+      <td><%= link_to 'View questions', questionare %></td>
+      
+    </tr>
+  <% end %>
+  </table>
+<% elsif current_user.priviledge=="ordinary_user" %>
+  <table>
+  <% @questionares.each do |questionare| %>
+    <tr>
+      
+      <td>About <%= questionare.questionare_name %></td>
+      <td>By:<%= User.find_by_id(questionare.user_id).name %></td>
+      <td><%= link_to 'Participate', questionare %></td>
+      
+    </tr>
+  <% end %>
+  </table>
+
+<% elsif current_user.priviledge=="administrator" %>
+    <div>
+      <%= form_for(@questionare) do |f| %>
+        <div class="field">
+          <%= f.label :about %>
+          <%= f.text_field :questionare_name %>
+          
+          <%= f.submit("add new Questionare") %>
+          
+      <% end %>
+  </div>
+
+  <table>
+  <% @questionares.each do |questionare| %>
+    <tr>
+      
+      <td>About <%= questionare.questionare_name %></td>
+      <td>By:<%= User.find_by_id(questionare.user_id).name %></td>
+      <td><%= link_to 'View', questionare %></td>
+      <td><%= link_to 'Edit', edit_questionare_path(questionare) %></td>
+      <td><%= link_to 'Delete', questionare, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+<% end %>
+    
+  
+
+
+<br />
+
+

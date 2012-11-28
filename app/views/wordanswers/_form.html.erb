@@ -1,0 +1,22 @@
+<%= form_for(@wordanswer) do |f| %>
+  <% if @wordanswer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wordanswer.errors.count, "error") %> prohibited this wordanswer from being saved:</h2>
+
+      <ul>
+      <% @wordanswer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :answer %>
+    <%= f.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Add answer") %>
+  </div>
+<% end %>

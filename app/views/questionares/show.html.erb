@@ -1,0 +1,123 @@
+
+<div>
+  <h2>Questionare name: <%= @questionare.questionare_name %></h2>
+</div>
+<div>
+  <b>survey taker:</b>
+  <%= User.find_by_id(@questionare.user_id).name %>
+</div>
+
+<% if current_user==nil %>
+
+  
+
+  <% @questionare.questions.each do |question| %>
+      <%= question.content %><br />
+  <% end %>
+  
+
+
+<% elsif current_user.priviledge=="ordinary_user" %>
+  <% @filtered_questions.each do |question| %>
+    <tr>
+      <td><%= question.content %></td>
+      <td>
+        
+         <% if question.answer_type=="word"%>
+            <%= form_for(Wordanswer.new) do |f| %>
+              <%= f.hidden_field :question_id, value:question.id %>
+              <div class="field">
+                <%= f.text_field :content %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit("Add answer") %>
+              </div>
+            <% end %>
+         <% elsif question.answer_type=="text"%>
+            
+            
+            
+            <%= form_for(Textanswer.new) do |f| %>
+              <%= f.hidden_field :question_id, value:question.id %>
+              <div class="field">
+                
+                <%= f.text_area :content %>
+              </div>
+              
+              <div class="actions">
+                <%= f.submit("Add answer") %>
+              </div>
+            <% end %>            
+            
+            
+            
+         <% elsif question.answer_type=="boolean"%>
+            <%= form_for(Booleananswer.new) do |f| %>
+              <%= f.hidden_field :question_id, value:question.id %>  
+              <div class="button">
+                
+                <%= f.radio_button :content, "yes" %>
+                <%= f.label "Yes" %>
+                <br />
+                
+                <%= f.radio_button :content, "no" %>
+                <%= f.label "No" %>
+              </div>
+              
+              <div class="actions">
+                <%= f.submit("Add answer") %>
+              </div>
+            <% end %>     
+      
+         <% end %>  
+      </td>
+ 
+    </tr>
+  <% end %>
+  
+  <% if @filtered_questions.length == 0 %>
+    You have completed this survey<br />
+  <% end %>
+
+
+<% elsif current_user.priviledge=="administrator" %>
+
+  
+  <%=form_for(Question.new) do |f|%>
+    <%= f.text_field :content %>
+    <div class="button">
+      
+      <%= f.radio_button :answer_type, "text" %>
+      <%= f.label "text answer" %>
+      <br />
+      <%= f.radio_button :answer_type, "word" %>
+      <%= f.label "word answer" %>
+      <br />
+      <%= f.hidden_field :questionare_id, value:@questionare.id %>
+      <%= f.radio_button :answer_type, "boolean" %>
+      <%= f.label "Boolean answer" %>
+      
+    </div>
+    
+    <div class="actions">
+      <%= f.submit("Add question") %>
+    </div>
+  <% end %>  
+
+  <table>
+
+  <% @questionare.questions.each do |question| %>
+    <tr>
+      <td><%= question.content %></td>
+      <td><%= link_to 'Show answers', question %></td>
+      <td><%= link_to 'Edit', edit_question_path(question) %></td>
+      <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  
+
+<% end %>
+<%= link_to 'Back', questionares_path %>

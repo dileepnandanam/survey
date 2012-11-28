@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @wordanswer.content %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @wordanswer.question_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_wordanswer_path(@wordanswer) %> |
+<%= link_to 'Back', Question.find_by_id(cookies[:current_question_id]) %>
