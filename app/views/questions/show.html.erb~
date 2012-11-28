@@ -22,7 +22,7 @@
     <% @question.wordanswers.each do |answer| %>
       
       <tr>
-        <td><%= answer.content %><td><td>by:<%= User.find_by_id(answer.user_id).name%><td>
+        <td><%= User.find_by_id(answer.user_id).name%>:</td><td><%= answer.content %></td>
       </tr>
       
      <% end %>
@@ -34,7 +34,7 @@
     <% @question.textanswers.each do |answer| %>
       
       <tr>
-        <td><%= answer.content %><td><td>by:<%= User.find_by_id(answer.user_id).name%><td>
+        <%= User.find_by_id(answer.user_id).name%>:<td><td><%= answer.content %><td><td>
       </tr>
       
      <% end %>
