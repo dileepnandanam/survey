@@ -1,0 +1,22 @@
+class ChoiseanswersController < ApplicationController
+
+  def show
+    @user = Choiseanswer.find(params[:id])
+  end
+
+  def new
+    @user = Choiseanswer.new
+  end
+  
+  def edit
+    
+  
+  
+  end
+  
+  def create
+    @answer = Choiseanswer.new(params[:choiseanswer])
+
+    
+  end
+end
