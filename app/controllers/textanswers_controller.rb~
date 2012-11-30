@@ -45,7 +45,7 @@ class TextanswersController < ApplicationController
     
     @textanswer.user_id = current_user.id
     return_path=Questionare.find_by_id(cookies[:current_questionare_id])
-    puts "jhgjgh"
+    
     if not @textanswer.content ==nil
       @textanswer.save
       

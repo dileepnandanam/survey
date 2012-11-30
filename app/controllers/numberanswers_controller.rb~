@@ -44,7 +44,7 @@ class NumberanswersController < ApplicationController
     @numberanswer = Numberanswer.new
     @numberanswer.user_id=current_user.id
     @numberanswer.question_id=params[:numberanswer][:question_id]
-     return_path=Questionare.find_by_id(cookies[:current_questionare_id])
+    return_path=Questionare.find_by_id(cookies[:current_questionare_id])
     userinput=params[:numberanswer][:userinput]
     if /^[+-]{0,1}\d+(\.\d+){0,1}$/ === userinput
       @numberanswer.content = userinput.to_i
