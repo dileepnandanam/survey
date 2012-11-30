@@ -1,0 +1,27 @@
+<h1>Listing numberanswers</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>User</th>
+    <th>Question</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @numberanswers.each do |numberanswer| %>
+  <tr>
+    <td><%= numberanswer.content %></td>
+    <td><%= numberanswer.user_id %></td>
+    <td><%= numberanswer.question_id %></td>
+    <td><%= link_to 'Show', numberanswer %></td>
+    <td><%= link_to 'Edit', edit_numberanswer_path(numberanswer) %></td>
+    <td><%= link_to 'Destroy', numberanswer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Numberanswer', new_numberanswer_path %>

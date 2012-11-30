@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128233238) do
+ActiveRecord::Schema.define(:version => 20121130080956) do
 
   create_table "booleananswers", :force => true do |t|
     t.string   "content"
@@ -21,7 +21,37 @@ ActiveRecord::Schema.define(:version => 20121128233238) do
     t.integer  "user_id"
   end
 
-  
+  add_index "booleananswers", ["question_id"], :name => "index_booleananswers_on_question_id"
+
+  create_table "choiseanswers", :force => true do |t|
+    t.integer  "question_id"
+    t.string   "content"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "choiseanswers", ["question_id"], :name => "index_choiseanswers_on_question_id"
+
+  create_table "dateanswers", :force => true do |t|
+    t.date     "content"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "dateanswers", ["question_id"], :name => "index_dateanswers_on_question_id"
+
+  create_table "numberanswers", :force => true do |t|
+    t.integer  "content"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "numberanswers", ["question_id"], :name => "index_numberanswers_on_question_id"
+
   create_table "questionares", :force => true do |t|
     t.integer  "user_id"
     t.string   "questionare_name"

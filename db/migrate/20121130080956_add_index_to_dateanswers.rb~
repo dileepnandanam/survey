@@ -1,0 +1,4 @@
+class AddIndexToDateanswers < ActiveRecord::Migration
+  def change
+  end
+end

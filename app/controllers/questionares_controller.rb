@@ -21,7 +21,7 @@ class QuestionaresController < ApplicationController
     if not current_user==nil and current_user.priviledge=="ordinary_user"
     
       
-      @filtered_questions= @questionare.questions.select {|quest| (quest.answer_type=="word" and not  (quest.wordanswers.map {|ans| ans.user_id}).include?(current_user.id)) or (quest.answer_type=="boolean" and not  (quest.booleananswers.map {|ans| ans.user_id}).include?(current_user.id)) or (quest.answer_type=="text" and not  (quest.textanswers.map {|ans| ans.user_id}).include?(current_user.id))}
+      @filtered_questions= @questionare.questions.select {|quest| (quest.answer_type=="word" and not  (quest.wordanswers.map {|ans| ans.user_id}).include?(current_user.id)) or (quest.answer_type=="boolean" and not  (quest.booleananswers.map {|ans| ans.user_id}).include?(current_user.id)) or (quest.answer_type=="text" and not  (quest.textanswers.map {|ans| ans.user_id}).include?(current_user.id)) or  (quest.answer_type=="number" and not  (quest.numberanswers.map {|ans| ans.user_id}).include?(current_user.id)) or (quest.answer_type=="date" and not  (quest.dateanswers.map {|ans| ans.user_id}).include?(current_user.id))}
       #filtering unanswered questions by current user
       
     else 

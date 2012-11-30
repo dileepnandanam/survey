@@ -1,4 +1,10 @@
 Survey::Application.routes.draw do
+  resources :dateanswers
+
+
+  resources :numberanswers
+
+
   resources :textanswers
 
 

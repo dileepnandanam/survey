@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @numberanswer.content %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @numberanswer.user_id %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @numberanswer.question_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_numberanswer_path(@numberanswer) %> |
+<%= link_to 'Back', numberanswers_path %>

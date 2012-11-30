@@ -45,6 +45,32 @@
      <% end %>
      </table>
      
+   <% elsif @question.answer_type == "date" %>
+    
+    <table>
+    <% @question.dateanswers.each do |answer| %>
+      
+      <tr>
+        <td><%= User.find_by_id(answer.user_id).name%>:</td>
+      </tr>
+      <tr>
+        <td></td><td><%= answer.content %></td>
+      </tr>
+     <% end %>
+     </table>
+    <% elsif @question.answer_type == "number" %>
+    
+    <table>
+    <% @question.numberanswers.each do |answer| %>
+      
+      <tr>
+        <td><%= User.find_by_id(answer.user_id).name%>:</td>
+      </tr>
+      <tr>
+        <td></td><td><%= answer.content %></td>
+      </tr>
+     <% end %>
+     </table> 
      
   <% else %>
     

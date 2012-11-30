@@ -49,8 +49,31 @@
                 <%= f.submit("Add answer") %>
               </div>
             <% end %>            
-            
-            
+         <% elsif question.answer_type=="number"%>
+            <%= form_for(:numberanswer, url: numberanswers_path) do |f| %>
+              <%= f.hidden_field :question_id, value:question.id %>
+              <div class="field">
+                
+                <%= f.text_field :userinput %>
+              </div>
+              
+              <div class="actions">
+                <%= f.submit("Add answer") %>
+              </div>
+            <% end %>         
+         
+         <% elsif question.answer_type=="date"%>   
+            <%= form_for(Dateanswer.new) do |f| %>
+              <%= f.hidden_field :question_id, value:question.id %>
+              <div class="field">
+                
+                <%= f.date_select :content %>
+              </div>
+              
+              <div class="actions">
+                <%= f.submit("Add answer") %>
+              </div>
+            <% end %>
             
          <% elsif question.answer_type=="boolean"%>
             <%= form_for(Booleananswer.new) do |f| %>
@@ -91,6 +114,12 @@
       
       <%= f.radio_button :answer_type, "text" %>
       <%= f.label "essay" %>
+      <br />
+      <%= f.radio_button :answer_type, "date" %>
+      <%= f.label "Date" %>
+      <br />
+      <%= f.radio_button :answer_type, "number" %>
+      <%= f.label "number" %>
       <br />
       <%= f.radio_button :answer_type, "word" %>
       <%= f.label "word/number" %>

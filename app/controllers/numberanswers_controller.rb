@@ -1,0 +1,88 @@
+class NumberanswersController < ApplicationController
+  # GET /numberanswers
+  # GET /numberanswers.json
+  def index
+    @numberanswers = Numberanswer.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @numberanswers }
+    end
+  end
+
+  # GET /numberanswers/1
+  # GET /numberanswers/1.json
+  def show
+    @numberanswer = Numberanswer.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @numberanswer }
+    end
+  end
+
+  # GET /numberanswers/new
+  # GET /numberanswers/new.json
+  def new
+    @numberanswer = Numberanswer.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @numberanswer }
+    end
+  end
+
+  # GET /numberanswers/1/edit
+  def edit
+    @numberanswer = Numberanswer.find(params[:id])
+  end
+
+  # POST /numberanswers
+  # POST /numberanswers.json
+  def create
+    
+    @numberanswer = Numberanswer.new
+    @numberanswer.user_id=current_user.id
+    @numberanswer.question_id=params[:numberanswer][:question_id]
+    return_path=Questionare.find_by_id(cookies[:current_questionare_id])
+    userinput=params[:numberanswer][:userinput]
+    if /^[+-]{0,1}\d+(\.\d+){0,1}$/ === userinput
+      @numberanswer.content = userinput.to_i
+      @numberanswer.save
+      redirect_to return_path
+    else
+      redirect_to return_path
+      
+    end
+    
+      
+  end
+
+  # PUT /numberanswers/1
+  # PUT /numberanswers/1.json
+  def update
+    @numberanswer = Numberanswer.find(params[:id])
+
+    respond_to do |format|
+      if @numberanswer.update_attributes(params[:numberanswer])
+        format.html { redirect_to @numberanswer, notice: 'Numberanswer was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @numberanswer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /numberanswers/1
+  # DELETE /numberanswers/1.json
+  def destroy
+    @numberanswer = Numberanswer.find(params[:id])
+    @numberanswer.destroy
+
+    respond_to do |format|
+      format.html { redirect_to numberanswers_url }
+      format.json { head :no_content }
+    end
+  end
+end

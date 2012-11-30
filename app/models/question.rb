@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   has_many:wordanswers
   has_many:booleananswers
   has_many:textanswers
-  has_many:choiseanswers
+  has_many:numberanswers
+  has_many:dateanswers
   belongs_to:questionares
 end

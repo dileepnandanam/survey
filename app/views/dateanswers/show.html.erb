@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @dateanswer.content %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @dateanswer.user_id %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @dateanswer.question_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_dateanswer_path(@dateanswer) %> |
+<%= link_to 'Back', dateanswers_path %>
