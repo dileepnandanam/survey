@@ -46,7 +46,7 @@ class TextanswersController < ApplicationController
     @textanswer.user_id = current_user.id
     return_path=Questionare.find_by_id(cookies[:current_questionare_id])
     
-    if not @textanswer.content ==nil
+    if not @textanswer.content ==''
       @textanswer.save
       
       redirect_to return_path

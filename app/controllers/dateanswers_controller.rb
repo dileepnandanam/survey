@@ -41,11 +41,16 @@ class DateanswersController < ApplicationController
   # POST /dateanswers.json
   def create
     @dateanswer = Dateanswer.new(params[:dateanswer])
-    return_path=Questionare.find_by_id(cookies[:current_questionare_id])
-    @dateanswer.user_id=current_user.id
-    @dateanswer.save
-    redirect_to return_path
     
+    @dateanswer.user_id=current_user.id
+    
+    if not @dateanswer.content==nil
+      @dateanswer.save
+      redirect_to :back
+    else
+       redirect_to :back
+    end
+      
   end
 
   # PUT /dateanswers/1

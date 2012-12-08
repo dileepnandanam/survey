@@ -52,17 +52,28 @@ class QuestionaresController < ApplicationController
   # POST /questionares
   # POST /questionares.json
   def create
-    @questionare = Questionare.new(params[:questionare])
-    @questionare.user_id=current_user.id
-    
-    if @questionare.questionare_name == ""
-      redirect_to questionares_path
-    else
-      @questionare.save
-      redirect_to @questionare
+    if not params[:float]==nil
       
+      cname=params[:float][:question_id].to_s+'current'
+      dir=params[:float][:dir]
+      
+      cookies[cname]=cookies[cname].to_i+dir.to_i
+      redirect_to :back
+      
+    
+    else
+  
+      @questionare = Questionare.new(params[:questionare])
+      @questionare.user_id=current_user.id
+      
+      if @questionare.questionare_name == ""
+        redirect_to questionares_path
+      else
+        @questionare.save
+        redirect_to @questionare
+        
+      end
     end
-   
   end
 
   # PUT /questionares/1
@@ -92,4 +103,6 @@ class QuestionaresController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
 end

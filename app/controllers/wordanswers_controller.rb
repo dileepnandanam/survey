@@ -48,13 +48,12 @@ class WordanswersController < ApplicationController
     @wordanswer = Wordanswer.new(params[:wordanswer])
     
     @wordanswer.user_id = current_user.id
-    return_path=Questionare.find_by_id(cookies[:current_questionare_id])
     
     if not @wordanswer.content ==""
       @wordanswer.save
-      redirect_to return_path
+      redirect_to :back
     else
-      redirect_to return_path
+      redirect_to :back
     end
   end
 

@@ -64,14 +64,14 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(params[:question])
     
-    return_path=Questionare.find_by_id(@question.questionare_id)
+    
     if @question.content == "" || @question.answer_type == nil
       
       
-      redirect_to return_path
+      redirect_to :back
     else
       @question.save
-      redirect_to return_path      
+      redirect_to :back      
     end
   end
 

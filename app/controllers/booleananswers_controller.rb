@@ -43,11 +43,11 @@ class BooleananswersController < ApplicationController
     @booleananswer = Booleananswer.new(params[:booleananswer])
     
     @booleananswer.user_id = current_user.id
-    return_path=Questionare.find_by_id(cookies[:current_questionare_id])
+    
     
     if not @booleananswer.content ==""
       @booleananswer.save
-      redirect_to return_path
+      redirect_to :back
     else
       redirect_to return_path
     end

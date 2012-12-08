@@ -47,9 +47,10 @@ class BooleananswersController < ApplicationController
     
     if not @booleananswer.content ==""
       @booleananswer.save
-      redirect_to return_path
+      redirect_to :back
     else
       redirect_to return_path
+    end
   end
 
   # PUT /booleananswers/1

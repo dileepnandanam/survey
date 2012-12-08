@@ -43,18 +43,18 @@ class WordanswersController < ApplicationController
   # POST /wordanswers
   # POST /wordanswers.json
   def create
+    
+      
     @wordanswer = Wordanswer.new(params[:wordanswer])
     
     @wordanswer.user_id = current_user.id
-    respond_to do |format|
-      if @wordanswer.save
-        return_path=Questionare.find_by_id(cookies[:current_questionare_id])
-        format.html { redirect_to return_path, notice: 'Wordanswer was successfully created.' }
-        format.json { render json: return_path, status: :created, location: @wordanswer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @wordanswer.errors, status: :unprocessable_entity }
-      end
+    return_path=Questionare.find_by_id(cookies[:current_questionare_id])
+    
+    if not @wordanswer.content ==""
+      @wordanswer.save
+      redirect_to return_path
+    else
+      redirect_to return_path
     end
   end
 

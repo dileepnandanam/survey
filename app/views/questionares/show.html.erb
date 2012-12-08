@@ -1,3 +1,15 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+$(function() {
+    $( "#datepicker" ).datepicker();
+});
+</script>
+
+
+
 
 <div>
   <h2>Questionare name: <%= @questionare.questionare_name %></h2>
@@ -67,13 +79,35 @@
               <%= f.hidden_field :question_id, value:question.id %>
               <div class="field">
                 
-                <%= f.date_select :content %>
+                
+                Date: <input type="text" id="datepicker" name="dateanswer[content]" />
+                
+                
+                
+                
+                
+                
+                
+                
+                
               </div>
               
               <div class="actions">
                 <%= f.submit("Add answer") %>
               </div>
             <% end %>
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
             
          <% elsif question.answer_type=="boolean"%>
             <%= form_for(Booleananswer.new) do |f| %>
@@ -140,9 +174,95 @@
   <% @questionare.questions.each do |question| %>
     <tr>
       <td><%= question.content %></td>
-      <td><%= link_to 'Show answers', question %></td>
+      
+            
+      
+      <td>
+        <% if cookies[question.id.to_s+"current"]==nil %>
+          <% cookies[question.id.to_s+"current"]="0" %>
+          
+        <% end %>
+          
+        
+        
+        
+          
+          
+        
+          
+        <% len =0 %>
+        <% if question.answer_type=="word"  %>
+          <% len=question.wordanswers.length %>
+        <% elsif question.answer_type=="boolean"  %>
+          <% len=question.booleananswers.length %>
+        <% elsif question.answer_type=="date"  %>
+          <% len=question.dateanswers.length %>
+        <% elsif question.answer_type=="text"  %>
+          <% len=question.textanswers.length %>
+        <% elsif question.answer_type=="number"  %>
+          <% len=question.numberanswers.length %>
+        <% end %>  
+          
+        <% if len>0 %>
+          <% if cookies[question.id.to_s+"current"].to_i<0 %>
+            <% cookies[question.id.to_s+"current"]=len-1 %>
+          <% elsif cookies[question.id.to_s+"current"].to_i>=len %>
+            <% cookies[question.id.to_s+"current"]=0 %>
+          <% end %>
+          
+          
+          
+          
+          
+          
+          <% if question.answer_type=="word"  %>
+            <%= User.find_by_id(question.wordanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+            <%= question.wordanswers[cookies[question.id.to_s+"current"].to_i].content %>
+          <% elsif question.answer_type=="boolean"  %>
+            <%= User.find_by_id(question.booleananswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+            <%= question.booleananswers[cookies[question.id.to_s+"current"].to_i].content %>
+          <% elsif question.answer_type=="date"  %>
+            <%= User.find_by_id(question.dateanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+            <%= question.dateanswers[cookies[question.id.to_s+"current"].to_i].content %>
+          <% elsif question.answer_type=="text"  %>
+            <%= User.find_by_id(question.textanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+            <%= question.textanswers[cookies[question.id.to_s+"current"].to_i].content %>
+          <% elsif question.answer_type=="number"  %>
+            <%= User.find_by_id(question.numberanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+            <%= question.numberanswers[cookies[question.id.to_s+"current"].to_i].content %>
+          <% end %>  
+            
+            
+        <% end %>
+    
+      </td>
+      <td>
+        <%= form_for(:float, url: questionares_path) do |f| %>
+            <%= f.hidden_field :question_id, value:question.id %>
+            <%= f.hidden_field :dir, value:-1 %>
+            <%= f.submit("prev") %>
+          
+
+        <% end %>        
+      </td>
+      
+      <td>
+        <%= form_for(:float, url: questionares_path) do |f| %>
+            <%= f.hidden_field :question_id, value:question.id %>
+            <%= f.hidden_field :dir, value:1 %>
+            <%= f.submit("next") %>
+          
+
+        <% end %>
+      </td>
+       
       <td><%= link_to 'Edit', edit_question_path(question) %></td>
       <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+            
+
+      
+      
     </tr>
   <% end %>
   </table>
