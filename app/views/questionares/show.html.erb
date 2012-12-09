@@ -81,14 +81,7 @@ $(function() {
                 
                 
                 Date: <input type="text" id="datepicker" name="dateanswer[content]" />
-                
-                
-                
-                
-                
-                
-                
-                
+
                 
               </div>
               
@@ -140,44 +133,55 @@ $(function() {
 
 <% elsif current_user.priviledge=="administrator" %>
 
-  
+  <div class="well">  
   <%=form_for(Question.new) do |f|%>
-    <%= f.label "Question" %>
-    <%= f.text_field :content %>
-    <div class="button">
-      
-      <%= f.radio_button :answer_type, "text" %>
-      <%= f.label "essay" %>
-      <br />
-      <%= f.radio_button :answer_type, "date" %>
-      <%= f.label "Date" %>
-      <br />
-      <%= f.radio_button :answer_type, "number" %>
-      <%= f.label "number" %>
-      <br />
-      <%= f.radio_button :answer_type, "word" %>
-      <%= f.label "word/number" %>
-      <br />
-      <%= f.hidden_field :questionare_id, value:@questionare.id %>
-      <%= f.radio_button :answer_type, "boolean" %>
-      <%= f.label "yes/no" %>
-      
-    </div>
     
-    <div class="actions">
-      <%= f.submit("Add question") %>
+    <div>  
+      Question
+      <%= f.text_field :content %>
     </div>
+    <label class="checkbox"> 
+      <%= f.radio_button :answer_type, "text" %>
+      essay
+    </label>
+    <label class="checkbox">  
+      <%= f.radio_button :answer_type, "date" %>
+      Date
+    </label>
+    <label class="checkbox">   
+      <%= f.radio_button :answer_type, "number" %>
+      number
+    </label>
+    <label class="checkbox">   
+      <%= f.radio_button :answer_type, "word" %>
+      word/number
+    </label>  
+      <%= f.hidden_field :questionare_id, value:@questionare.id %>
+    <label class="checkbox"> 
+      <%= f.radio_button :answer_type, "boolean" %>
+      yes/no
+    </label>
+    
+      <%= f.submit("Add question") %>
+    
   <% end %>  
-
-  <table>
-
-  <% @questionare.questions.each do |question| %>
-    <tr>
-      <td><%= question.content %></td>
+  </div>
+  
+  
+    <% @questionare.questions.each do |question| %>
+    
+    
+    <div class="well">
+      
+      <div class="raw">
+        <div class="spawn12">
+          <%= question.content %>
+        </div>
+      </div>
       
             
       
-      <td>
+      
         <% if cookies[question.id.to_s+"current"]==nil %>
           <% cookies[question.id.to_s+"current"]="0" %>
           
@@ -216,56 +220,115 @@ $(function() {
           
           
           <% if question.answer_type=="word"  %>
-            <%= User.find_by_id(question.wordanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
-            <%= question.wordanswers[cookies[question.id.to_s+"current"].to_i].content %>
+            <div class="raw">
+              <div class="span1">
+                <%= User.find_by_id(question.wordanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+              </div>
+              <div class="span11">
+                <%= question.wordanswers[cookies[question.id.to_s+"current"].to_i].content %>
+              </div>
+            </div>
+                
+                
           <% elsif question.answer_type=="boolean"  %>
-            <%= User.find_by_id(question.booleananswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
-            <%= question.booleananswers[cookies[question.id.to_s+"current"].to_i].content %>
+            <div class="raw">
+              <div class="span1">
+                <%= User.find_by_id(question.booleananswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+              </div>
+              <div class="span6">
+                <%= question.booleananswers[cookies[question.id.to_s+"current"].to_i].content %>
+              </div>
+            </div>
+            
+            
+            
           <% elsif question.answer_type=="date"  %>
-            <%= User.find_by_id(question.dateanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
-            <%= question.dateanswers[cookies[question.id.to_s+"current"].to_i].content %>
+            <div class="raw">
+              <div class="span6">
+                <%= User.find_by_id(question.dateanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+              </div>
+              <div class="span11">
+                <%= question.dateanswers[cookies[question.id.to_s+"current"].to_i].content %>
+              </div>
+            </div>
+            
+            
+            
+            
           <% elsif question.answer_type=="text"  %>
-            <%= User.find_by_id(question.textanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
-            <%= question.textanswers[cookies[question.id.to_s+"current"].to_i].content %>
+            <div class="raw">
+              <div class="span1">
+                <%= User.find_by_id(question.textanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+              </div>
+              <div class="span11">
+                <%= question.textanswers[cookies[question.id.to_s+"current"].to_i].content %>
+              </div>
+            </div>
+            
+            
+            
           <% elsif question.answer_type=="number"  %>
-            <%= User.find_by_id(question.numberanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
-            <%= question.numberanswers[cookies[question.id.to_s+"current"].to_i].content %>
+            <div class="raw">
+              <div class="span1">
+                <%= User.find_by_id(question.numberanswers[cookies[question.id.to_s+"current"].to_i].user_id).name+":" %>
+              </div>
+              <div class="span11">
+                <%= question.numberanswers[cookies[question.id.to_s+"current"].to_i].content %>
+              </div>
+            </div>
+            
+            
+            
+            
           <% end %>  
             
             
         <% end %>
-    
-      </td>
-      <td>
-        <%= form_for(:float, url: questionares_path) do |f| %>
-            <%= f.hidden_field :question_id, value:question.id %>
-            <%= f.hidden_field :dir, value:-1 %>
-            <%= f.submit("prev") %>
-          
-
-        <% end %>        
-      </td>
       
-      <td>
-        <%= form_for(:float, url: questionares_path) do |f| %>
-            <%= f.hidden_field :question_id, value:question.id %>
-            <%= f.hidden_field :dir, value:1 %>
-            <%= f.submit("next") %>
-          
+      <br>
+      <div class="raw">
+        
+        
+          <div class="span0">
+            <%= form_for(:float, url: questionares_path) do |f| %>
+                  <%= f.hidden_field :question_id, value:question.id %>
+                  <%= f.hidden_field :dir, value:-1 %>
+                  <%= f.submit("prev") %>
+                
 
-        <% end %>
-      </td>
+              <% end %>
+          </div>
+          <div class="span0">
+            <%= form_for(:float, url: questionares_path) do |f| %>
+                  <%= f.hidden_field :question_id, value:question.id %>
+                  <%= f.hidden_field :dir, value:1 %>
+                  <%= f.submit("next") %>
+                
+
+              <% end %>
+          </div>
+      
+              
+      </div>
+      
+     
+      
+      <div class="raw">
+        <div class="span0">
+          <%= link_to 'Edit', edit_question_path(question) %>
+        </div>
+        <div class="span0">
+          <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
        
-      <td><%= link_to 'Edit', edit_question_path(question) %></td>
-      <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   
             
 
       
       
-    </tr>
+    </div>
   <% end %>
-  </table>
 
   
 
