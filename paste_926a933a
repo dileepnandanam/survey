@@ -1,0 +1,12 @@
+diff --git a/app/assets/stylesheets/application.css b/app/assets/stylesheets/application.css
+index 3d082e0..8803c3e 100644
+--- a/app/assets/stylesheets/application.css
++++ b/app/assets/stylesheets/application.css
+@@ -10,6 +10,6 @@
+  *
+  *= require_self
+  *= require_tree .
++ *= require bootstrap
+  */
+  
+-*= require bootstrap
