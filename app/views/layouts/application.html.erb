@@ -6,8 +6,8 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   
-  <div>
-  <%= link_to "Home", root_path %> |
+  <div class="raw">
+  <div class<%= link_to "Home", root_path %> |
   <% if current_user==nil %>
     
     <%= link_to "sign in", '/signin' %> |

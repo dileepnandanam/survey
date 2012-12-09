@@ -19,25 +19,29 @@ $(function() {
 <% if current_user==nil %>
   <table>
   <% @questionares.each do |questionare| %>
-    <tr>
-      
-      <td>About <%= questionare.questionare_name %></td>
-      <td>By:<%= User.find_by_id(questionare.user_id).name %></td>
-      <td><%= link_to 'View questions', questionare %></td>
-      
-    </tr>
+    <div class="well">
+      <div class="raw">
+      <div class="span0">About</div> 
+      <div class="span4" ><%= questionare.questionare_name %></div>
+      <div class="span0"> By:</div>
+      <div class="span1"><%= User.find_by_id(questionare.user_id).name %></div>
+      <div class="span5"><%= link_to 'View questions', questionare %></div>
+      </div>
+    </div>
   <% end %>
   </table>
 <% elsif current_user.priviledge=="ordinary_user" %>
   <table>
   <% @questionares.each do |questionare| %>
-    <tr>
-      
-      <td>About <%= questionare.questionare_name %></td>
-      <td>By:<%= User.find_by_id(questionare.user_id).name %></td>
-      <td><%= link_to 'Participate', questionare %></td>
-      
-    </tr>
+    <div class="well">
+      <div class="raw">
+      <div class="span0">About</div> 
+      <div class="span4" ><%= questionare.questionare_name %></div>
+      <div class="span0"> By:</div>
+      <div class="span1"><%= User.find_by_id(questionare.user_id).name %></div>
+      <div class="span5"><%= link_to 'Participate', questionare %></div>
+      </div>
+    </div>
   <% end %>
   </table>
 

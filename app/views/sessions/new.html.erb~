@@ -2,19 +2,16 @@
 <%= form_for(:session, url: sessions_path) do |f| %>
 
 
-  <div>
+  <form class="well">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
-  </div>
-  <div>
+ 
     <%= f.label :password %><br />
     <%= f.password_field :password %>
-  </div>
-
-  <div class="actions" >
+  
     
     <%= f.submit("sign in") %>
-  </div>
+  </form>
 <% end %>
 <%= link_to 'back' , root_path %>
 </div>

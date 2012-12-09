@@ -24,14 +24,16 @@ $(function() {
   
 
   <% @questionare.questions.each do |question| %>
-      <%= question.content %><br />
+      <div class="well">
+        <%= question.content %><br />
+      </div>
   <% end %>
   
 
 
 <% elsif current_user.priviledge=="ordinary_user" %>
   <% @filtered_questions.each do |question| %>
-    <tr>
+    <div class="well">
       <td><%= question.content %></td>
       <td>
         
@@ -52,9 +54,9 @@ $(function() {
             
             <%= form_for(Textanswer.new) do |f| %>
               <%= f.hidden_field :question_id, value:question.id %>
-              <div class="field">
+              <div class="text_area">
                 
-                <%= f.text_area :content %>
+                <%= f.text_area :content  %>
               </div>
               
               <div class="actions">
@@ -123,7 +125,7 @@ $(function() {
          <% end %>  
       </td>
  
-    </tr>
+    </div>
   <% end %>
   
   <% if @filtered_questions.length == 0 %>
