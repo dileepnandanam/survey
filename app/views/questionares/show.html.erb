@@ -110,11 +110,11 @@ $(function() {
               <div class="button">
                 
                 <%= f.radio_button :content, "yes" %>
-                <%= f.label "Yes" %>
-                <br />
+                Yes
+                <br>
                 
                 <%= f.radio_button :content, "no" %>
-                <%= f.label "No" %>
+                No
               </div>
               
               <div class="actions">
@@ -129,7 +129,9 @@ $(function() {
   <% end %>
   
   <% if @filtered_questions.length == 0 %>
-    You have completed this survey<br />
+    <div class="well">
+    <h3>You have completed this survey</h3><br />
+    </div>
   <% end %>
 
 
