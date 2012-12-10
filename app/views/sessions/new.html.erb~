@@ -1,8 +1,9 @@
 <div>
+<form class="well">
 <%= form_for(:session, url: sessions_path) do |f| %>
 
 
-  <form class="well">
+  
     <%= f.label :email %><br />
     <%= f.text_field :email %>
  
@@ -11,7 +12,8 @@
   
     
     <%= f.submit("sign in") %>
-  </form>
+  
 <% end %>
+</form>
 <%= link_to 'back' , root_path %>
 </div>

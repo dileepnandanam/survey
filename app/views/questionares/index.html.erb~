@@ -22,10 +22,10 @@ $(function() {
     <div class="well">
       <div class="raw">
       <div class="span0">About</div> 
-      <div class="span4" ><%= questionare.questionare_name %></div>
+      <div class="span5"><h5><%= link_to questionare.questionare_name, questionare %></h5></div>
       <div class="span0"> By:</div>
       <div class="span1"><%= User.find_by_id(questionare.user_id).name %></div>
-      <div class="span5"><%= link_to 'View questions', questionare %></div>
+      
       </div>
     </div>
   <% end %>
@@ -33,20 +33,22 @@ $(function() {
 <% elsif current_user.priviledge=="ordinary_user" %>
   <table>
   <% @questionares.each do |questionare| %>
-    <tr>
+    <div class="well">
+      <div class="raw">
+      <div class="span0">About</div> 
+      <div class="span5"><%= link_to questionare.questionare_name, questionare %></div>
+      <div class="span0"> By:</div>
+      <div class="span1"><%= User.find_by_id(questionare.user_id).name %></div>
       
-      <td>About <%= questionare.questionare_name %></td>
-      <td>By:<%= User.find_by_id(questionare.user_id).name %></td>
-      <td><%= link_to 'Participate', questionare %></td>
-      
-    </tr>
+      </div>
+    </div>
   <% end %>
   </table>
 
 <% elsif current_user.priviledge=="administrator" %>
-    <div>
+    <div class="well">
       <%= form_for(@questionare) do |f| %>
-        <div class="field">
+        
           <%= f.label :about %>
           <%= f.text_field :questionare_name %>
           
@@ -61,9 +63,9 @@ $(function() {
     <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 
       
-      About <%= questionare.questionare_name %>
+      About <%= link_to questionare.questionare_name, questionare %>
       By:<%= User.find_by_id(questionare.user_id).name %>
-      <%= link_to 'View', questionare %></td>
+      
       <%= link_to 'Edit', edit_questionare_path(questionare) %>
       <%= link_to 'Delete', questionare, method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
