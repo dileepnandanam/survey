@@ -1,3 +1,5 @@
+
+<div class="well">
 <%= form_for(@questionare) do |f| %>
   <% if @questionare.errors.any? %>
     <div id="error_explanation">
@@ -19,3 +21,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>

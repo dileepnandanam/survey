@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :questionare_name %><br />
+    <%= f.label :questionare_name %> <br />
     <%= f.text_field :questionare_name %>
   </div>
   <div class="actions">

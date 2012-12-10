@@ -57,6 +57,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     @question = Question.find(params[:id])
+    
   end
 
   # POST /questions
@@ -80,15 +81,14 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
 
-    respond_to do |format|
+    
       if @question.update_attributes(params[:question])
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to Questionare.find_by_id(@question.questionare_id)
       else
-        format.html { render action: "edit" }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+
+        redirect_to :back
       end
-    end
+    
   end
 
   # DELETE /questions/1
