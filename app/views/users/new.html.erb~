@@ -1,20 +1,20 @@
 <div>
-<form class="well">
+<div class="well">
 <%= form_for(@user) do |f| %>
 
-  <div>
+  <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :label:"name" :name %>
   </div>
-  <div>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div>
+  <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
-  <div>
+  <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
@@ -22,6 +22,6 @@
     <%= f.submit("sign up") %>
   </div>
 <% end %>
-</form>
+</div>
 <%= link_to 'back' , root_path %>
 </div>

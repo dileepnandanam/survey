@@ -1,0 +1,7 @@
+FactoryGirl.define do
+  factory :questionare do
+    content "questionare1"
+    user_id "1"
+  end
+end
+
