@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130080956) do
+ActiveRecord::Schema.define(:version => 20121214090955) do
 
   create_table "booleananswers", :force => true do |t|
     t.string   "content"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20121130080956) do
     t.string   "questionare_name"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "serial_no"
   end
 
   add_index "questionares", ["user_id"], :name => "index_questionares_on_user_id"

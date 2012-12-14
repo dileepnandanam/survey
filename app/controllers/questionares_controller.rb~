@@ -3,6 +3,7 @@ class QuestionaresController < ApplicationController
   # GET /questionares.json
   def index
     @questionares = Questionare.all
+    @questionares.sort! {|x| x.serial_no}
     @questionare = Questionare.new
     respond_to do |format|
       format.html # index.html.erb
@@ -52,7 +53,21 @@ class QuestionaresController < ApplicationController
   # POST /questionares
   # POST /questionares.json
   def create
-    if not params[:float]==nil
+    
+    if not params[:order]==nil
+    
+    	serial=0
+    	params[:order].each do |n|
+			if not n==""
+				q=Questionare.find(n.to_i)
+				q.serial_no=serial
+				q.save
+				serial+=1
+			end
+		end
+    	redirect_to questionares_path
+    
+    elsif not params[:float]==nil
       
       cname=params[:float][:question_id].to_s+'current'
       dir=params[:float][:dir]

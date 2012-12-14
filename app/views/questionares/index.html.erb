@@ -8,9 +8,21 @@
 #sortable li span { position: absolute; margin-left: -1.3em; }
 </style>
 <script>
-$(function() {
+$(document).ready(function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
+    $("#reorder").click(function(){
+    	var neworder=$( "#sortable" ).sortable( "toArray" );
+    	$.post("<%= questionares_path %>",
+		{
+		  order:neworder
+			
+		},
+		function() {}
+		)
+		
+    
+    })
 });
 </script>
 
@@ -46,6 +58,7 @@ $(function() {
   </table>
 
 <% elsif current_user.priviledge=="administrator" %>
+    
     <div class="well">
       <%= form_for(@questionare) do |f| %>
         
@@ -60,10 +73,11 @@ $(function() {
   <ul id="sortable">
     
   <% @questionares.each do |questionare| %>
-    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+    <li id="<%=questionare.id%>" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 
       
       About <%= link_to questionare.questionare_name, questionare %>
+      <%=questionare.serial_no%>
       By:<%= User.find_by_id(questionare.user_id).name %>
       
       <%= link_to 'Edit', edit_questionare_path(questionare) %>
@@ -74,7 +88,7 @@ $(function() {
 
 
 <% end %>
-
+<button id="reorder">save order</button>
 <br />
 
 
