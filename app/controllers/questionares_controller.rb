@@ -80,7 +80,7 @@ class QuestionaresController < ApplicationController
   
       @questionare = Questionare.new(params[:questionare])
       @questionare.user_id=current_user.id
-      
+      @questionare.serial_no=0
       if @questionare.questionare_name == ""
         redirect_to questionares_path
       else

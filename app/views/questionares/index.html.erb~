@@ -58,7 +58,7 @@ $(document).ready(function() {
   </table>
 
 <% elsif current_user.priviledge=="administrator" %>
-    <button id="reorder">save order</button>
+    
     <div class="well">
       <%= form_for(@questionare) do |f| %>
         
@@ -88,7 +88,7 @@ $(document).ready(function() {
 
 
 <% end %>
-
+<button id="reorder">save order</button>
 <br />
 
 

@@ -3,7 +3,7 @@ class QuestionaresController < ApplicationController
   # GET /questionares.json
   def index
     @questionares = Questionare.all
-    @questionares.sort! {|x| x.serial_no}
+    @questionares.sort! {|x,y| x.serial_no <=> y.serial_no}
     @questionare = Questionare.new
     respond_to do |format|
       format.html # index.html.erb

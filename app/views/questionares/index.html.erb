@@ -77,7 +77,7 @@ $(document).ready(function() {
 
       
       About <%= link_to questionare.questionare_name, questionare %>
-      <%=questionare.serial_no%>
+      
       By:<%= User.find_by_id(questionare.user_id).name %>
       
       <%= link_to 'Edit', edit_questionare_path(questionare) %>
