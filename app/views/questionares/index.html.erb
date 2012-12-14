@@ -84,11 +84,12 @@ $(document).ready(function() {
       <%= link_to 'Delete', questionare, method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
   <% end %>
-
-
+	<%if @questionares.length>0%>
+	<button id="reorder">save order</button>
+	<%end%>
 
 <% end %>
-<button id="reorder">save order</button>
+
 <br />
 
 
